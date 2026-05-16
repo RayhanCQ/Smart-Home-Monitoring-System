@@ -3,8 +3,8 @@ import paho.mqtt.client as paho
 #KONFIGURASI BROKER
 BROKER = "broker.hivemq.com"
 PORT = 1883
-CLIENT_ID = "Dashboard_PC_Kel5_01" 
-TOPIC_SUBSCRIBE = "smarthome_kel5/#"
+CLIENT_ID = "Dashboard_PC_Kel7_01" 
+TOPIC_SUBSCRIBE = "smarthome_kel7/#"
 
 #1. FUNGSI CONNECT 
 def on_connect(client, userdata, flags, rc):
@@ -23,7 +23,7 @@ def on_message(client, userdata, msg):
     print(f"[{topic}] Data: {payload}")
     
     #LOGIKA NODE 1 (RUANG TAMU)
-    if topic == "smarthome_kel5/living_room/temperature":
+    if topic == "smarthome_kel7/living_room/temperature":
         suhu = float(payload)
         
         BATAS_BAWAH = 22.0
@@ -36,12 +36,12 @@ def on_message(client, userdata, msg):
         else:
             print(f"INFO: Suhu Ruang Tamu IDEAL dan Nyaman ({suhu} C).")
             
-    elif topic == "smarthome_kel5/living_room/motion":
+    elif topic == "smarthome_kel7/living_room/motion":
         if payload == "DETECTED":
             print("ALERT: Terdeteksi pergerakan di Ruang Tamu!")
             
 #LOGIKA KELEMBAPAN (HUMIDITY)
-    elif topic == "smarthome_kel5/living_room/humidity":
+    elif topic == "smarthome_kel7/living_room/humidity":
         kelembapan = float(payload)
         
         HUM_BAWAH = 45.0
@@ -55,7 +55,7 @@ def on_message(client, userdata, msg):
             print(f"INFO: Kelembapan Udara Ruang Tamu IDEAL ({kelembapan} %).")
             
     # LOGIKA NODE 2 (DAPUR) 
-    elif topic == "smarthome_kel5/kitchen/gas":
+    elif topic == "smarthome_kel7/kitchen/gas":
         gas_value = int(payload)
         
         if gas_value > 2000:
