@@ -74,7 +74,7 @@ client = paho.Client(client_id=CLIENT_ID, clean_session=False)
 client.on_connect = on_connect
 client.on_message = on_message
 
-print("Memulai Dashboard IoT Kelompok 5...")
+print("Memulai Dashboard IoT Kelompok 7...")
 try:
     client.connect(BROKER, PORT, 60)
     client.loop_forever()
